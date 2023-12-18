@@ -3,6 +3,10 @@
   "private": true,
   "version": "0.0.0.1",
   "author": "eTechWeekly",
+  "engines": {
+    "yarn": "~1.22.11"
+  },
+  "engineStrict": true,
   "dependencies": {
     "@styled-system/theme-get": "^5.1.2",
     "axios": "^0.24.0",
