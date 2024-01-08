@@ -33,6 +33,11 @@ export const BlogPostsWrapper = styled.div`
   }
 `;
 
+export const PostsList = styled.div`
+	display: flex;
+	flex-wrap: wrap;
+`;
+
 export const RelatedPostWrapper = styled.div`
   margin: 0 auto;
   @media (min-width: 990px) {
@@ -365,4 +370,27 @@ export const PostGrid = styled.div`
   @media (max-width: 575px) {
     margin-bottom: 50px;
   }
+`;
+
+export const CategoryPostCol = styled.div`
+	margin-bottom: 50px;
+	width: 50%;
+	float: left;
+	padding: 0 15px;
+	@media (max-width: 1024px) {
+		margin-bottom: 40px;
+		padding: 0 10px;
+	}
+	@media (max-width: 767px) {
+		margin-bottom: 30px;
+	}
+	@media (max-width: 575px) {
+		width: 420px;
+		margin-left: auto;
+		margin-right: auto;
+		margin-bottom: 25px;
+	}
+	@media (max-width: 460px) {
+		width: 100%;
+	}
 `;

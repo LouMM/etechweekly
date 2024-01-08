@@ -52,7 +52,7 @@ export const BannerInner = styled.div`
 `;
 
 export const FeaturePosts = styled.div`
-  width: 460px;
+  width: 100%;
   max-width: 100%;
   background-color: #fff;
   border-radius: 6px;
@@ -72,6 +72,7 @@ export const FeaturePosts = styled.div`
     }
   }
 `;
+// Original width 460px;
 
 export const Title = styled.div`
   color: ${themeGet('colors.textColor', '#292929')};

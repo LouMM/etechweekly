@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 
+type ColorProps = {
+	postColor?: string;
+	categoryColor?: string;
+};
+
 export const PostCardWrapper = styled.div`
   position: relative;
 `;
@@ -113,4 +118,28 @@ export const PostTags = styled.div`
       margin-right: 25px;
     }
   }
+`;
+
+export const PostCategory = styled('span')<ColorProps>`
+	display: flex;
+	align-items: center;
+	margin-bottom: 7px;
+	margin-left: -5px;
+	margin-right: -5px;
+	a {
+		font-size: 12px;
+		background-color: ${(props) =>
+			props.categoryColor
+				? props.categoryColor
+				: themeGet('colors.primary', '#FF2E55')};
+		font-weight: ${themeGet('fontWeights.6', '700')};
+		text-transform: uppercase;
+		color: ${themeGet('white', '#FFFFFF')};
+		padding: 2px 10px;
+		display: inline-block;
+		margin: 5px;
+		@media (max-width: 767px) {
+			font-size: ${themeGet('fontSizes.0', '10')}px;
+		}
+	}
 `;

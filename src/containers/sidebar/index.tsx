@@ -64,7 +64,7 @@ const Sidebar: React.FunctionComponent<SidebarProps> = () => {
         <a
           href="https://1.envato.market/r1jdv"
           aria-label="Get StoryHub"
-          target="_blank"
+          target="_blank" rel='noopener'
         >
           <img src={PromotionImage} alt="Get StoryHub" />
         </a>

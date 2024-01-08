@@ -8,7 +8,11 @@ import { TagPostsWrapper, TagPageHeading, TagName } from './templates.style';
 const Tags = ({ pageContext, data }: any) => {
   const { tag } = pageContext;
   const { edges, totalCount } = data.allMarkdownRemark;
-
+  const colors = ['#E33974', '#006EE5', '#4F4DBF', '#784D74'];
+  function getRandomColor(values: string[]) {
+		const random = Math.floor(Math.random() * values.length);
+		return values[random];
+	}
   return (
     <Layout>
       <SEO title={tag} description={`A collection of ${totalCount} post`} />
@@ -20,6 +24,7 @@ const Tags = ({ pageContext, data }: any) => {
         </TagPageHeading>
         {edges.map(({ node, index }: any) => (
           <PostCard
+           postColor={getRandomColor(colors)}
             key={node.fields.slug}
             title={node.frontmatter.title}
             url={node.fields.slug}

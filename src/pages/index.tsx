@@ -3,17 +3,25 @@ import { graphql } from 'gatsby';
 import Layout from '../components/layout';
 import PersonalBlog from '../containers/home';
 import SEO from '../components/seo';
+import PersonalBlogWrapper from '../containers/home/style';
+import Banner from '../containers/home/banner';
+import FeaturedPosts from '../containers/home/featured-post';
 
-const HomePage = (props: any) => {
+const HomePage : React.FunctionComponent<any> = (props: any) => {
   const { data } = props;
 
   return (
     <Layout>
+
       <SEO
-        title="Agency Blog Modern"
+        title="ETechWeekly 🎙️"
         description={data.site.siteMetadata.description}
       />
-      <PersonalBlog />
+      <PersonalBlogWrapper>
+      <Banner />
+			<FeaturedPosts />
+        <PersonalBlog />
+      </PersonalBlogWrapper>
     </Layout>
   );
 };

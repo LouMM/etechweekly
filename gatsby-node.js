@@ -8,6 +8,7 @@ exports.createPages = ({ graphql, actions }) => {
   const blogPost = path.resolve(`./src/templates/blog-post.tsx`);
   const blogList = path.resolve(`./src/templates/blog-list.tsx`);
   const tagTemplate = path.resolve(`./src/templates/tags.tsx`);
+  const categoryTemplate = path.resolve(`./src/templates/category.tsx`);
 
   return graphql(
     `
@@ -24,6 +25,16 @@ exports.createPages = ({ graphql, actions }) => {
               frontmatter {
                 title
                 tags
+                cover {
+                  publicURL
+                  childImageSharp {
+                    gatsbyImageData(
+                      layout: FULL_WIDTH
+                      placeholder: BLURRED
+                      formats: [AUTO, WEBP, AVIF]
+                    )
+                  }
+                }
               }
             }
           }
@@ -51,6 +62,7 @@ exports.createPages = ({ graphql, actions }) => {
           previous,
           next,
           tag: post.node.frontmatter.tags,
+          //category: post.node.frontmatter.categories
         },
       });
     });
@@ -90,6 +102,28 @@ exports.createPages = ({ graphql, actions }) => {
         component: tagTemplate,
         context: {
           tag,
+        },
+      });
+    });
+    
+    // Category pages:
+    let categories = [];
+    // Iterate through each post, putting all found tags into `tags`
+    _.each(posts, (edge) => {
+      if (_.get(edge, 'node.frontmatter.categories')) {
+        categories = categories.concat(edge.node.frontmatter.categories);
+      }
+    });
+    // Eliminate duplicate tags
+    categories = _.uniq(categories);
+
+    // Make tag pages
+    categories.forEach((category) => {
+      createPage({
+        path: `/category/${_.kebabCase(category)}/`,
+        component: categoryTemplate,
+        context: {
+          category,
         },
       });
     });

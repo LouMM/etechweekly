@@ -6,6 +6,7 @@ import {
   PostCardWrapper,
   PostPreview,
   PostDetails,
+  PostCategory,
   PostDate,
   PostTitle,
   Excerpt,
@@ -16,10 +17,12 @@ import {
 interface PostCardProps {
   image?: any;
   title: string;
+  postColor: string;
   description?: string;
   url: string;
   date?: string;
   tags?: [];
+  categories?: [];
   className?: string;
   placeholderBG?: string;
 }
@@ -27,10 +30,12 @@ interface PostCardProps {
 const PostCard: React.FunctionComponent<PostCardProps> = ({
   image,
   title,
+  postColor,
   description,
   url,
   date,
   tags,
+  categories,
   className,
   placeholderBG,
   ...props
@@ -64,6 +69,16 @@ const PostCard: React.FunctionComponent<PostCardProps> = ({
         )}
 
         <PostContent className="post_content">
+         /* {categories == null ? null : (
+            <PostCategory categoryColor={postColor}>
+              {categories &&
+                categories.map((cat, index) => (
+                  <Link key={index} to={`/category/${_.kebabCase(cat)}/`}>
+                    {cat}
+                  </Link>
+                ))}
+            </PostCategory>
+          )}*/
           <PostTitle className="post_title">
             <Link to={url}>{title}</Link>
           </PostTitle>

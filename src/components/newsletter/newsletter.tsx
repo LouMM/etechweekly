@@ -16,10 +16,14 @@ type NewsletterProps = {};
 
 const Newsletter: React.FunctionComponent<NewsletterProps> = ({ ...props }) => {
   const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
   const [success, setSuccess] = useState('');
   const [error, setError] = useState('');
   const handleChange = (e: any) => {
-    setEmail(e.target.value);
+    if(e.type == "email")
+      setEmail(e.target.value);
+    else if (e.type == "name")
+      setName(e.target.value);
   };
 
   const handleSubmit = (e: any) => {
@@ -43,10 +47,11 @@ const Newsletter: React.FunctionComponent<NewsletterProps> = ({ ...props }) => {
     <NewsletterWrapper {...props}>
       <NewsletterInnerWrapper>
         <NewsletterTitle>
-          Get The Best Of All Hands Delivered To Your Inbox
+          📰 Want to know more about ETechWeekly and upcoming events and content? 📰
         </NewsletterTitle>
         <NewsletterDescription>
-          Subscribe to our newsletter and stay updated.
+          📧 Subscribe to our newsletter and stay updated.
+          (We don't sell, nor spam, email boxes)
         </NewsletterDescription>
 
         <NewsletterInputWrapper onSubmit={handleSubmit}>
@@ -60,6 +65,14 @@ const Newsletter: React.FunctionComponent<NewsletterProps> = ({ ...props }) => {
                 placeholder="Write your email here"
                 onChange={handleChange}
                 value={email}
+                required={true}
+              />
+              <Input
+                type="name"
+                name="name"
+                placeholder="Write your name here"
+                onChange={handleChange}
+                value={name}
                 required={true}
               />
               <Button title="Subscribe" type="submit" />
